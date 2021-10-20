@@ -1,0 +1,60 @@
+_RETURN_
+CCP_1
+CCP_1_LOW
+CCP_1_HIGH
+CCP_2
+CCP_2_LOW
+CCP_2_HIGH
+PSP_DATA
+C1OUT
+C2OUT
+lcd
+LCD_INIT_STRING
+LCD_WRITE
+LCD_READ
+PIR1
+TMR1IF
+TMR1H
+TMR1L
+T1CON
+TMR1IE
+GIE
+PEIE
+carga
+hora
+min
+day
+aux
+alg1
+alg2
+ind1
+ind2
+flag
+flag2
+time
+
+Project Directory:
+    C:\Users\LUCAS\Downloads\Projeto 11 (com projeto de inteface)\PIC16F877A\
+
+Project Files:
+    main.c
+    ..\..\..\..\..\Program Files (x86)\PICC\devices\16f877a.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\lcd_2.c
+
+Units:
+    C:\Users\LUCAS\Downloads\Projeto 11 (com projeto de inteface)\PIC16F877A\main (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Output file:    Relocatable
+
+Output Files:
+    Errors:      main.err
+    Ext Symbols: main.esym
+    Object:      main.o
+    Symbols:     main.osym

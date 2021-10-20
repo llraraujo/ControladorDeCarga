@@ -1,0 +1,226 @@
+004     @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+008     lcd
+008     PSP_DATA
+00B.6   PEIE
+00B.7   GIE
+00C.0   TMR1IF
+00C     PIR1
+00E     TMR1L
+00F     TMR1H
+010     T1CON
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     carga
+028     hora
+029     min
+02A     day
+02B     aux
+02C     alg1
+02D     alg2
+02E     ind1
+02F     ind2
+030.0   flag
+030.1   flag2
+031-034 time
+035     lcd_init.i
+035-038 menu.u
+035     timer_config.@SCRATCH1
+036     lcd_init.@SCRATCH1
+039     @PRINTF_U_96.P1
+039     @MUL88.P2
+039     @PSTRINGCN7_96.P3
+039     @PRINTF_D_96.P4
+039     print_dia.a
+039     le_teclado.@SCRATCH1
+039     @PSTRINGC7_96.@SCRATCH1
+039     acionar.@SCRATCH1
+039     desligar.@SCRATCH1
+039     write_memory_pro.@SCRATCH1
+039     write_memory_pro_2.@SCRATCH1
+03A     @PRINTF_U_96.P1
+03A     @PRINTF_D_96.P2
+03A     @MUL88.P3
+03A     @PSTRINGC7_96.@SCRATCH2
+03A     @PSTRINGCN7_96.@SCRATCH1
+03B     @PSTRINGC7_96.@SCRATCH3
+03B     @PRINTF_D_96.@SCRATCH1
+03B     @PSTRINGCN7_96.@SCRATCH2
+03C     @PRINTF_D_96.@SCRATCH2
+03C     @PSTRINGCN7_96.@SCRATCH3
+03D     @PRINTF_D_96.@SCRATCH3
+03E     @PRINTF_D_96.@SCRATCH4
+03F     @DIV88.P1
+03F     lcd_putc.c
+040     @delay_ms1.P1
+040     @DIV88.P2
+040     lcd_gotoxy.x
+041     lcd_gotoxy.y
+041     @DIV88.@SCRATCH1
+042     lcd_gotoxy.address
+043     lcd_gotoxy.@SCRATCH1
+044     lcd_send_byte.address
+045     lcd_send_byte.n
+046     lcd_read_byte.low
+046     lcd_send_byte.@SCRATCH1
+047     lcd_read_byte.high
+047     lcd_send_nibble.n
+048     lcd_read_byte.@SCRATCH1
+049     read_memory_2.a
+04A     read_memory_2.b
+04B     read_memory_2.c
+04C     read_memory_2.d
+04D     read_memory_1.a
+04E     read_memory_1.b
+04F     read_memory_1.c
+050     read_memory_1.d
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07F     @INTERRUPT_AREA
+08C.0   TMR1IE
+09C.6   C1OUT
+09C.7   C2OUT
+0FF     @INTERRUPT_AREA
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+17F     @INTERRUPT_AREA
+1FF     @INTERRUPT_AREA
+27F     @INTERRUPT_AREA
+2FF     @INTERRUPT_AREA
+37F     @INTERRUPT_AREA
+3FF     @INTERRUPT_AREA
+47F     @INTERRUPT_AREA
+4FF     @INTERRUPT_AREA
+57F     @INTERRUPT_AREA
+5FF     @INTERRUPT_AREA
+67F     @INTERRUPT_AREA
+6FF     @INTERRUPT_AREA
+77F     @INTERRUPT_AREA
+7FF     @INTERRUPT_AREA
+87F     @INTERRUPT_AREA
+8FF     @INTERRUPT_AREA
+97F     @INTERRUPT_AREA
+9FF     @INTERRUPT_AREA
+A7F     @INTERRUPT_AREA
+AFF     @INTERRUPT_AREA
+B7F     @INTERRUPT_AREA
+BFF     @INTERRUPT_AREA
+C7F     @INTERRUPT_AREA
+CFF     @INTERRUPT_AREA
+D7F     @INTERRUPT_AREA
+DFF     @INTERRUPT_AREA
+E7F     @INTERRUPT_AREA
+EFF     @INTERRUPT_AREA
+F7F     @INTERRUPT_AREA
+FFF     @INTERRUPT_AREA
+
+ROM Allocation:
+0738  @delay_ms1
+0031  LCD_INIT_STRING
+075C  lcd_read_byte
+074C  lcd_send_nibble
+075B  lcd_send_byte
+0797  lcd_init
+081B  lcd_gotoxy
+0800  lcd_putc
+0885  le_teclado
+05FD  clock
+099A  print_dia
+09E8  @goto10259
+07C3  RTC_Init
+1823  timer_config
+0623  @const151
+083F  @PSTRINGC7_96
+07D6  @DIV88
+090C  @PRINTF_D_96
+0632  @const161
+0975  @MUL88
+063D  @const167
+1A66  acionar
+0647  @const170
+0659  @const173
+0666  @const175
+0673  @const176
+0681  @const179
+068B  @const182
+0A2C  @PSTRINGCN7_96
+069C  @const185
+1C32  desligar
+06A8  @const186
+06BA  @const189
+06C8  @const191
+06D5  @const192
+06E4  @const195
+06EE  @const198
+06FF  @const199
+1000  write_memory_pro
+1407  @goto10770
+0A7B  write_memory_pro_2
+0E75  @goto10819
+0039  read_memory_1
+0306  @goto10976
+031A  read_memory_2
+05E9  @goto11133
+1916  menu
+070B  @const214
+0715  @const215
+071D  @const216
+0726  @const217
+072F  @const218
+0730  @const219
+0731  @const220
+19A5  show_clock
+0732  @const221
+09F3  @PRINTF_U_96
+0733  @const227
+1800  MAIN
+0737  @const234
+1800  @cinit
+0136  reteste
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\LUCAS\Downloads\Projeto 11 (com projeto de inteface)\PIC16F877A\
+
+Project Files:
+    Debug.c
+    main.c (link)
+    ..\..\..\..\..\Program Files (x86)\PICC\devices\16f877a.h (link)
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\lcd_2.c (link)
+
+Units:
+    C:\Users\LUCAS\Downloads\Projeto 11 (com projeto de inteface)\PIC16F877A\main.o
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      Debug.err
+    Ext Symbols: Debug.esym
+    INHX8:       Debug.cof
+    Symbols:     Debug.sym
+    List:        Debug.lst
+    Debug/COFF:  Debug.cof

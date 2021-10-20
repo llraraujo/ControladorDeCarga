@@ -1,0 +1,115 @@
+#include <16f877a.h>
+#use delay(clock=20000000)
+#use rs232(baud = 9600, xmit = pin_c6, rcv = pin_c7) // padrão 8N1
+#fuses XT,NOWDT,NOPROTECT,PUT,BROWNOUT,NOLVP,NOCPD,NOWRT
+#define LCD_RS_PIN PIN_D1
+#define LCD_RW_PIN PIN_D2
+#define LCD_ENABLE_PIN PIN_D1
+#define LCD_DATA4 PIN_D4
+#define LCD_DATA5 PIN_D5
+#define LCD_DATA6 PIN_D6
+#define LCD_DATA7 PIN_D7
+#include <lcd_2.c>
+#byte PIR1 = 0x0c
+#bit TMR1IF = 0x0c.0
+#byte TMR1H = 0x0f
+#byte TMR1L = 0x0e
+#byte T1CON = 0x10
+#bit TMR1IE = 0x8c.0
+#bit GIE = 0x0b.7
+#bit PEIE = 0x0b.6
+
+typedef struct
+{
+  unsigned int8 sec;
+  unsigned int8 min;
+  unsigned int8 hrs;
+  char dia[22];
+}RTC;
+RTC time;
+
+/*#int_timer1
+void RTC_Interrupt()
+{
+    bit_clear(PIR1, 0); //Limpa a flag de interrupção
+    TMR1H = 0x80;
+    TMR1L = 0;
+    time.sec++;
+    if( time.sec == 60 )
+    {
+        time.sec = 0;
+        time.min++;
+        if(time.min == 60)
+        {
+          time.sec = 0;
+          time.min = 0;
+          time.hrs++;
+        }
+    }
+}*/
+
+void RTC_Init()
+{
+	setup_timer_1(t1_external);
+	enable_interrupts(global | int_timer1);
+     T1CON = 0b00001111; //Prescaler 1:1, Oscilador ligado, Clock Externo
+     TMR1H = 0x80;  
+     TMR1L = 0;     //Carrega valor de (TMR1H:TMR1L) com 32768
+     time.sec = 0;
+     time.min = 0;
+     time.hrs = 0;
+     TMR1IE = 1; //habilita interrupção do timer1
+     PEIE = 1;  //habilita interrupção dos periféricos
+     GIE = 1;  //Habilita interrupção global
+}
+//Esta funcao verifica o tempo do RTC com um
+// determinado tempo e executa a funcao do parametro
+/*char RTC_Define_Time( char s, char m, char hr)
+{
+	time.sec == s;
+	time.min == m;
+	time.hrs == hr;
+     return 0;
+}*/
+
+void main()
+{
+	lcd_init();
+	//setup_timer_1(t1_external);
+	//enable_interrupts(global | int_timer1);
+	rtc_init();
+	while(1)
+	{
+		if(bit_test(PIR1, 0) == 1) //Se ocorreu a interrupção
+		  {
+			bit_clear(PIR1, 0); //Limpa a flag de interrupção
+			TMR1H = 0x80;
+			TMR1L = 0;
+			time.sec++;
+			if( time.sec == 60 )
+			{
+				time.sec = 0;
+				time.min++;
+				if(time.min == 60)
+				{
+				  time.sec = 0;
+				  time.min = 0;
+				  time.hrs++;
+				}
+			}
+		  }
+	//int8 hr = time.hrs;
+
+	//lcd_putc(time.hrs);
+	printf(lcd_putc, "\fhora: %u ",  time.hrs);
+    printf(lcd_putc, "%u " ,  time.min);
+	printf(lcd_putc, "%u",  time.sec);
+	//delay_ms(1);	
+	//lcd_gotoxy(2,1);
+	//lcd_putc(time.min);
+	//lcd_gotoxy(3,1);
+	//lcd_putc(time.sec);
+	}
+
+
+}
