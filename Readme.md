@@ -1,1 +1,1 @@
-Fiz esse projeto durante a graduação. Foi parte da note da disciplina de microcontroladores. 
+Fiz esse projeto durante a graduação. Foi parte da nota da disciplina de microcontroladores. 
